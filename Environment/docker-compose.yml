@@ -1,0 +1,37 @@
+services:
+  first-server:
+    image: "first-server"
+    container_name: "FirstServer"
+    volumes:
+      - ../FirstServer/src:/go/src/mathapp
+    networks:
+      - "restaurant"
+    ports:
+      - "8010:8010"
+    restart: unless-stopped
+
+  second-server:
+    image: "second-server"
+    container_name: "SecondServer"
+    volumes:
+      - ../SecondServer/src:/go/src/mathapp
+    networks:
+      - "restaurant"
+    ports:
+      - "8020:8020"
+    restart: unless-stopped
+
+  third-server:
+    image: "third-server"
+    container_name: "ThirdServer"
+    volumes:
+      - ../ThirdServer/src:/go/src/mathapp
+    networks:
+      - "restaurant"
+    ports:
+      - "8030:8030"
+    restart: unless-stopped
+
+networks:
+  restaurant:
+    name: "Restaurant"
